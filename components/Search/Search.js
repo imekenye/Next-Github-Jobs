@@ -10,6 +10,7 @@ const Search = () => {
         <IconContext.Provider value={{ size: 20, className: 'briefcase' }}>
           <FiBriefcase />
         </IconContext.Provider>
+        <div></div>
         <input
           type="text"
           placeholder="Title,companies,expertise or benefits"

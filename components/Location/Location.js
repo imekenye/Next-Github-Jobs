@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import CheckBox from '../Checkbox/CheckBox';
 import { LocationWrapper } from './Location.styled';
 
+import { FiGlobe } from 'react-icons/fi';
+import { IconContext } from 'react-icons';
+
 const Location = () => {
   const [checked, setChecked] = useState(false);
   const [location, setLocation] = useState([
@@ -26,7 +29,7 @@ const Location = () => {
         <label>
           <CheckBox checked={checked} onChange={() => setChecked(!checked)} />
         </label>
-        <span style={{ marginLeft: '8px' }}>Full time</span>
+        <span style={{ marginLeft: '8px', color: '#334680' }}>Full time</span>
       </div>
       <div className="location__search">
         <label for="location"> Location</label>
@@ -36,11 +39,16 @@ const Location = () => {
           name="location"
           placeholder="City, state, zip code or country"
         />
+        <IconContext.Provider
+          value={{ color: '#B9BDCF', size: 20, className: 'globe' }}
+        >
+          <FiGlobe />
+        </IconContext.Provider>
       </div>
       <div className="location__others">
         {location.map(({ city, checked }, i) => (
           <>
-            <div className="location__city">
+            <div className="location__city" style={{ marginBottom: '16px' }}>
               <label>
                 <CheckBox
                   key={city}
@@ -51,7 +59,9 @@ const Location = () => {
                   }}
                 />
               </label>
-              <span style={{ marginLeft: '8px' }}>{city}</span>
+              <span style={{ marginLeft: '8px', color: '#334680' }}>
+                {city}
+              </span>
             </div>
           </>
         ))}
