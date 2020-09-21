@@ -16,7 +16,6 @@ export const JobsListCardWrapper = styled.div`
     &__image {
       background: url(${(props) => props.logo}) no-repeat;
       background-size: contain;
-      height: 100%;
       width: 30%;
       flex-grow: 1;
       border-radius: 4px;
@@ -47,6 +46,7 @@ export const JobsListCardWrapper = styled.div`
       justify-content: space-between;
       align-self: end;
       width: 80%;
+      height: 100%;
     }
     &__location {
       display: flex;
