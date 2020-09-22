@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import CheckBox from '../Checkbox/CheckBox';
 import { LocationWrapper } from './Location.styled';
 
 import { FiGlobe } from 'react-icons/fi';
 import { IconContext } from 'react-icons';
+import { useChecked } from '../../hooks/useChecked';
+
+// import { reducer } from '../../hooks/useChecked';
 
 const Location = () => {
   const [checked, setChecked] = useState(false);
-  const [location, setLocation] = useState([
-    { city: 'London', checked: false },
-    { city: 'Amsterdam', checked: false },
-    { city: 'New York', checked: false },
-    { city: 'Berlin', checked: false },
+  const [labels, setLabel] = useState([
+    { id: 1, label: 'London', checked: false },
+    { id: 2, label: 'Amsterdam', checked: false },
+    { id: 3, label: 'New York', checked: false },
+    { id: 4, label: 'Berlin', checked: false },
   ]);
 
-  const handleCheckbox = (i) => {
-    // setChecked(!checked);
-    location[i].checked = true;
-    setLocation([...location]);
-  };
-
-  useEffect(() => {
-    return () => {};
-  }, []);
   return (
     <LocationWrapper>
       <div className="location__fulltime">
@@ -46,21 +40,21 @@ const Location = () => {
         </IconContext.Provider>
       </div>
       <div className="location__others">
-        {location.map(({ city, checked }, i) => (
+        {labels.map(({ label, checked, id }, i) => (
           <>
             <div className="location__city" style={{ marginBottom: '16px' }}>
               <label>
                 <CheckBox
-                  key={city}
+                  key={id}
                   checked={checked}
                   onChange={() => {
-                    location[i].checked = !checked;
-                    setLocation([...location]);
+                    labels[i].checked = !checked;
+                    setLabel([...labels]);
                   }}
                 />
               </label>
               <span style={{ marginLeft: '8px', color: '#334680' }}>
-                {city}
+                {label}
               </span>
             </div>
           </>
